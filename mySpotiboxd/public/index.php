@@ -1,13 +1,17 @@
 <?php
+// Inicia a sessão
 session_start();
+
+// Inclui o arquivo de conexão com o banco de dados
 require '../backend/db.php';
 
+// Verifica se o usuário está logado, caso contrário redireciona para a página de login
 if (!isset($_SESSION['usuario_id'])) {
     header("Location: login.php");
     exit;
 }
 
-// Puxa as avaliações
+// Puxa as avaliações do banco de dados
 $stmt = $pdo->query("
     SELECT a.id, a.nota, a.resenha, a.data, a.usuario_id, u.nome, m.titulo, m.artista 
     FROM avaliacoes a 
@@ -16,6 +20,7 @@ $stmt = $pdo->query("
     ORDER BY a.data DESC
 ");
 
+// Armazena as avaliações em um array
 $avaliacoes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
@@ -55,9 +60,13 @@ $avaliacoes = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="post">
                     <img src="https://placehold.co/50" alt="Capa do álbum">
                     <div class="post-content">
+                        <!-- Exibe o nome do usuário, a nota dada, o título da música e o artista -->
                         <p><strong><?php echo $avaliacao['nome']; ?></strong> deu <?php echo $avaliacao['nota']; ?> ★ para "<?php echo $avaliacao['titulo']; ?>" - <?php echo $avaliacao['artista']; ?></p>
+                        <!-- Exibe a resenha do usuário -->
                         <p class="review">"<?php echo $avaliacao['resenha']; ?>"</p>
+                        <!-- Exibe a data e hora da avaliação formatada -->
                         <span class="timestamp"><?php echo date('d/m/Y H:i', strtotime($avaliacao['data'])); ?></span>
+                        <!-- Exibe os botões de editar e excluir apenas se o usuário logado for o autor da avaliação -->
                         <?php if ($avaliacao['usuario_id'] == $_SESSION['usuario_id']): ?>
                             <a href="editar.php?id=<?php echo $avaliacao['id']; ?>" class="edit-btn">Editar</a>
                             <a href="../backend/excluir.php?id=<?php echo $avaliacao['id']; ?>" class="delete-btn" onclick="return confirm('Tem certeza que quer excluir esta avaliação?');">Excluir</a>

@@ -2,20 +2,20 @@
 require '../backend/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nome = $_POST['nome'];
-    $email = $_POST['email'];
-    $senha = $_POST['senha'];
+    $nome = $_POST['nome']; // Obtém o nome do formulário
+    $email = $_POST['email']; // Obtém o email do formulário
+    $senha = $_POST['senha']; // Obtém a senha do formulário
 
-    // Verifica se o email já existe
+    // Verifica se o email já existe no banco de dados
     $stmt = $pdo->prepare("SELECT COUNT(*) FROM usuarios WHERE email = ?");
     $stmt->execute([$email]);
     if ($stmt->fetchColumn() > 0) {
-        $erro = "Esse email já está cadastrado!";
+        $erro = "Esse email já está cadastrado!"; // Define a mensagem de erro se o email já estiver cadastrado
     } else {
-        // Insere o novo usuário
+        // Insere o novo usuário no banco de dados
         $stmt = $pdo->prepare("INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)");
         $stmt->execute([$nome, $email, $senha]);
-        header("Location: login.php");
+        header("Location: login.php"); // Redireciona para a página de login após o cadastro
         exit;
     }
 }

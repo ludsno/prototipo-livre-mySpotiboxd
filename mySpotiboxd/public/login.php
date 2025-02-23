@@ -1,22 +1,26 @@
 <?php
 session_start(); // Inicia a sessão
-require '../backend/db.php';
+require '../backend/db.php'; // Inclui o arquivo de conexão com o banco de dados
 
+// Verifica se o método de requisição é POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $email = $_POST['email'];
-    $senha = $_POST['senha'];
+    $email = $_POST['email']; // Obtém o email do formulário
+    $senha = $_POST['senha']; // Obtém a senha do formulário
 
+    // Prepara a consulta para buscar o usuário com o email e senha fornecidos
     $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = ? AND senha = ?");
-    $stmt->execute([$email, $senha]);
-    $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt->execute([$email, $senha]); // Executa a consulta
+    $usuario = $stmt->fetch(PDO::FETCH_ASSOC); // Obtém o resultado da consulta
 
+    // Verifica se o usuário foi encontrado
     if ($usuario) {
+        // Armazena os dados do usuário na sessão
         $_SESSION['usuario_id'] = $usuario['id'];
         $_SESSION['nome'] = $usuario['nome'];
-        header("Location: index.php");
-        exit;
+        header("Location: index.php"); // Redireciona para a página inicial
+        exit; // Encerra o script
     } else {
-        $erro = "Email ou senha incorretos!";
+        $erro = "Email ou senha incorretos!"; // Define a mensagem de erro
     }
 }
 ?>

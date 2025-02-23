@@ -2,7 +2,9 @@
 session_start();
 require '../backend/db.php';
 
+// Verifica se o usuário está logado
 if (!isset($_SESSION['usuario_id'])) {
+    // Redireciona para a página de login se não estiver logado
     header("Location: login.php");
     exit;
 }
@@ -15,7 +17,9 @@ $stmt = $pdo->prepare("
     WHERE a.usuario_id = ? 
     ORDER BY a.data DESC
 ");
+// Executa a consulta com o ID do usuário logado
 $stmt->execute([$_SESSION['usuario_id']]);
+// Armazena as avaliações em um array associativo
 $avaliacoes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 

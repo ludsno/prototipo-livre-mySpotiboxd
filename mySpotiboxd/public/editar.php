@@ -41,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nota = $_POST['nota'];
     $resenha = $_POST['resenha'];
 
+    // Prepara a consulta para atualizar a avaliação
     $stmt = $pdo->prepare("UPDATE avaliacoes SET musica_id = ?, nota = ?, resenha = ? WHERE id = ? AND usuario_id = ?");
     $stmt->execute([$musica_id, $nota, $resenha, $avaliacao_id, $_SESSION['usuario_id']]);
 

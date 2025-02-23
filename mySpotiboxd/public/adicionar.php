@@ -1,27 +1,31 @@
 <?php
-require '../backend/db.php'; // Conexão com o banco
+require '../backend/db.php'; // Conexão com o banco de dados
 
 // Se o formulário foi enviado, salva a avaliação
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // $usuario_id = 1; // Fixo por agora (João, por exemplo). Depois mudamos com login
     session_start();
+    // Verifica se o usuário está logado
     if (!isset($_SESSION['usuario_id'])) {
         header("Location: login.php");
         exit;
     }
+    // Obtém o ID do usuário da sessão
     $usuario_id = $_SESSION['usuario_id'];
+    // Obtém os dados do formulário
     $musica_id = $_POST['musica_id'];
     $nota = $_POST['nota'];
     $resenha = $_POST['resenha'];
 
+    // Insere a avaliação no banco de dados
     $stmt = $pdo->prepare("INSERT INTO avaliacoes (usuario_id, musica_id, nota, resenha) VALUES (?, ?, ?, ?)");
     $stmt->execute([$usuario_id, $musica_id, $nota, $resenha]);
 
-    header("Location: index.php"); // Volta pra home após salvar
+    // Redireciona para a página inicial após salvar
+    header("Location: index.php");
     exit;
 }
 
-// Puxa as músicas disponíveis pra escolher
+// Puxa as músicas disponíveis para escolher
 $stmt = $pdo->query("SELECT id, titulo, artista FROM musicas");
 $musicas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>

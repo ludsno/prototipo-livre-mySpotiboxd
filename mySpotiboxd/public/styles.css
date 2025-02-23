@@ -1,14 +1,14 @@
-/* Variáveis */
+/* Variáveis: Definição de cores, bordas e sombras para reutilização */
 :root {
-    --primary-color: #ff4500;
-    --secondary-color: #1a1a1a;
-    --text-color: #333;
-    --light-bg-color: #f9f9f9;
-    --border-radius: 5px;
-    --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    --primary-color: #ff4500; /* Cor primária usada em botões e links */
+    --secondary-color: #1a1a1a; /* Cor de fundo do cabeçalho e rodapé */
+    --text-color: #333; /* Cor principal do texto */
+    --light-bg-color: #f9f9f9; /* Cor de fundo clara para seções */
+    --border-radius: 5px; /* Raio de borda padrão */
+    --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra padrão */
 }
 
-/* Reset básico */
+/* Reset básico: Remove margens e preenchimentos padrão, define box-sizing e fonte */
 * {
     margin: 0;
     padding: 0;
@@ -16,7 +16,7 @@
     font-family: Arial, sans-serif;
 }
 
-/* Cabeçalho */
+/* Cabeçalho: Estilização do header, logo e barra de pesquisa */
 header {
     display: flex;
     justify-content: space-between;
@@ -27,16 +27,14 @@ header {
 }
 
 .logo {
-     /* font-family: Arial, Helvetica, sans-serif; */
-    font-family: 'Consolas', 'Courier New', Courier, monospace;
-    
+    font-family: 'Consolas', 'Courier New', Courier, monospace; /* Fonte da logo */
     font-size: 24px;
     font-weight: bold;
 }
 
 .search-bar input {
     padding: 5px;
-    width: 300px;
+    width: 300px; /* Largura da barra de pesquisa */
 }
 
 .search-bar button {
@@ -49,14 +47,16 @@ header {
 
 .user-options a {
     color: var(--primary-color);
-    text-decoration: none;
+    text-decoration: none; /* Links sem sublinhado */
 }
 
-/* Feed */
+/* Feed: Estilização do conteúdo principal */
 main {
     max-width: 800px;
     margin: 20px auto;
     padding: 0 20px;
+    flex: 1 0 auto;
+    overflow-y: auto;
 }
 
 .feed h1 {
@@ -98,7 +98,7 @@ main {
     color: #999;
 }
 
-/* Rodapé */
+/* Rodapé: Estilização do footer */
 footer {
     text-align: center;
     padding: 20px;
@@ -109,7 +109,7 @@ footer {
     width: 100%;
 }
 
-/* Formulário */
+/* Formulário: Estilização do container do formulário e seus elementos */
 .form-container {
     max-width: 500px;
     margin: 20px auto;
@@ -150,7 +150,7 @@ footer {
     border-radius: 4px;
 }
 
-/* Botões de ação */
+/* Botões de ação: Estilização dos botões de edição e exclusão */
 .edit-btn,
 .delete-btn {
     display: inline-block;
@@ -167,5 +167,5 @@ footer {
 }
 
 .delete-btn {
-    background-color: #dc3545;
+    background-color: #dc3545; /* Cor vermelha para o botão de exclusão */
 }
