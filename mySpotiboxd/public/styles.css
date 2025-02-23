@@ -1,22 +1,20 @@
-/* Variáveis: Definição de cores, bordas e sombras para reutilização */
 :root {
-    --primary-color: #ff4500; /* Cor primária usada em botões e links */
-    --secondary-color: #1a1a1a; /* Cor de fundo do cabeçalho e rodapé */
-    --text-color: #333; /* Cor principal do texto */
-    --light-bg-color: #f9f9f9; /* Cor de fundo clara para seções */
-    --border-radius: 5px; /* Raio de borda padrão */
-    --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra padrão */
+    --primary-color: #ff6347;
+    --secondary-color: #2c3e50;
+    --text-color: #2c3e50;
+    --light-bg-color: #ecf0f1;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    --hover-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Reset básico: Remove margens e preenchimentos padrão, define box-sizing e fonte */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Cabeçalho: Estilização do header, logo e barra de pesquisa */
 header {
     display: flex;
     justify-content: space-between;
@@ -27,30 +25,43 @@ header {
 }
 
 .logo {
-    font-family: 'Consolas', 'Courier New', Courier, monospace; /* Fonte da logo */
-    font-size: 24px;
+    font-family: 'Consolas', 'Courier New', Courier, monospace;
+    font-size: 28px;
     font-weight: bold;
 }
 
 .search-bar input {
-    padding: 5px;
-    width: 300px; /* Largura da barra de pesquisa */
+    padding: 8px;
+    width: 300px;
+    border-radius: var(--border-radius);
+    border: 1px solid #ccc;
 }
 
 .search-bar button {
-    padding: 5px 10px;
+    padding: 8px 12px;
     background-color: var(--primary-color);
     border: none;
     color: white;
     cursor: pointer;
+    border-radius: var(--border-radius);
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.search-bar button:hover {
+    background-color: darken(var(--primary-color), 10%);
+    box-shadow: var(--hover-shadow);
 }
 
 .user-options a {
     color: var(--primary-color);
-    text-decoration: none; /* Links sem sublinhado */
+    text-decoration: none;
+    transition: color 0.3s;
 }
 
-/* Feed: Estilização do conteúdo principal */
+.user-options a:hover {
+    color: darken(var(--primary-color), 10%);
+}
+
 main {
     max-width: 800px;
     margin: 20px auto;
@@ -60,7 +71,7 @@ main {
 }
 
 .feed h1 {
-    font-size: 24px;
+    font-size: 28px;
     margin-bottom: 20px;
     color: var(--text-color);
 }
@@ -69,47 +80,56 @@ main {
     display: flex;
     align-items: center;
     background-color: var(--light-bg-color);
-    padding: 15px;
-    margin-bottom: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
+    transition: box-shadow 0.3s;
+}
+
+.post:hover {
+    box-shadow: var(--hover-shadow);
 }
 
 .post img {
-    width: 50px;
-    height: 50px;
-    margin-right: 15px;
+    width: 60px;
+    height: 60px;
+    margin-right: 20px;
     border-radius: var(--border-radius);
 }
 
 .post-content p {
-    font-size: 16px;
+    font-size: 18px;
     color: var(--text-color);
 }
 
 .post-content .review {
     font-style: italic;
-    color: #666;
+    color: #7f8c8d;
     margin: 5px 0;
 }
 
 .post-content .timestamp {
-    font-size: 12px;
-    color: #999;
+    font-size: 14px;
+    color: #bdc3c7;
 }
 
-/* Rodapé: Estilização do footer */
 footer {
     text-align: center;
-    padding: 20px;
-    background-color: var(--secondary-color);
+    padding: 10px;
+    background-color: rgba(44, 62, 80, 0.8);
     color: white;
     position: fixed;
     bottom: 0;
     width: 100%;
+    font-size: 14px;
+    transition: background-color 0.3s;
 }
 
-/* Formulário: Estilização do container do formulário e seus elementos */
+footer:hover {
+    background-color: var(--secondary-color);
+}
+
 .form-container {
     max-width: 500px;
     margin: 20px auto;
@@ -120,7 +140,7 @@ footer {
 }
 
 .form-container h1 {
-    font-size: 24px;
+    font-size: 28px;
     margin-bottom: 20px;
     color: var(--text-color);
 }
@@ -135,37 +155,53 @@ footer {
 .form-container input,
 .form-container textarea {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: var(--border-radius);
 }
 
 .form-container button {
-    padding: 10px 20px;
+    padding: 12px 24px;
     background-color: var(--primary-color);
     border: none;
     color: white;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: var(--border-radius);
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-/* Botões de ação: Estilização dos botões de edição e exclusão */
+.form-container button:hover {
+    background-color: darken(var(--primary-color), 10%);
+    box-shadow: var(--hover-shadow);
+}
+
 .edit-btn,
 .delete-btn {
     display: inline-block;
     margin-top: 5px;
-    padding: 5px 10px;
+    padding: 8px 12px;
     color: white;
     text-decoration: none;
-    border-radius: 4px;
+    border-radius: var(--border-radius);
     font-size: 14px;
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .edit-btn {
     background-color: var(--primary-color);
 }
 
+.edit-btn:hover {
+    background-color: darken(var(--primary-color), 10%);
+    box-shadow: var(--hover-shadow);
+}
+
 .delete-btn {
-    background-color: #dc3545; /* Cor vermelha para o botão de exclusão */
+    background-color: #e74c3c;
+}
+
+.delete-btn:hover {
+    background-color: darken(#e74c3c, 10%);
+    box-shadow: var(--hover-shadow);
 }
