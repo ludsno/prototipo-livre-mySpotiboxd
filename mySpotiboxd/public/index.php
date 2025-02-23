@@ -40,14 +40,6 @@ $avaliacoes = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <input type="text" placeholder="Pesquisar músicas, álbuns ou artistas...">
             <button>Pesquisar</button>
         </div>
-        <!-- <div class="user-options">
-            <a href="#">Login</a> | <a href="#">Cadastro</a> | <a href="adicionar.php">Adicionar</a>
-        </div> -->
-        <!-- <div class="user-options">
-            Bem-vindo, < php echo $_SESSION['nome']; ?> |
-            <a href="adicionar.php">Adicionar</a> |
-            <a href="../backend/logout.php">Sair</a>
-        </div> -->
         <div class="user-options">
             Bem-vindo, <?php echo $_SESSION['nome']; ?> |
             <a href="perfil.php">Meu Perfil</a> |
@@ -59,16 +51,6 @@ $avaliacoes = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <main>
         <section class="feed">
             <h1>Atividades recentes</h1>
-            <!-- < php foreach ($avaliacoes as $avaliacao): ?>
-                <div class="post">
-                    <img src="https://placehold.co/50" alt="Capa do álbum">
-                    <div class="post-content">
-                        <p><strong>< php echo $avaliacao['nome']; ?></strong> deu < php echo $avaliacao['nota']; ?> ★ para "< php echo $avaliacao['titulo']; ?>" - < php echo $avaliacao['artista']; ?></p>
-                        <p class="review">"< php echo $avaliacao['resenha']; ?>"</p>
-                        <span class="timestamp">< php echo date('d/m/Y H:i', strtotime($avaliacao['data'])); ?></span>
-                    </div>
-                </div>
-            <php endforeach; ?> -->
             <?php foreach ($avaliacoes as $avaliacao): ?>
                 <div class="post">
                     <img src="https://placehold.co/50" alt="Capa do álbum">
