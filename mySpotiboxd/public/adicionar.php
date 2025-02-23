@@ -69,7 +69,7 @@ $musicas = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </main>
 
     <footer>
-        <p>© 2025 mySpotiboxd - Feito por </p>
+        <p>© 2025 mySpotiboxd - Feito por HKLRW</p>
     </footer>
 </body>
 

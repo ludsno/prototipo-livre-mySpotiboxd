@@ -2,18 +2,20 @@
 session_start();
 require '../backend/db.php';
 
+// Verifica se o usuário está autenticado
 if (!isset($_SESSION['usuario_id'])) {
     header("Location: login.php");
     exit;
 }
 
+// Obtém o ID da avaliação a ser editada
 $avaliacao_id = $_GET['id'] ?? null;
 if (!$avaliacao_id) {
     header("Location: index.php");
     exit;
 }
 
-// Puxa a avaliação pra edição (só do usuário logado)
+// Puxa a avaliação específica do usuário logado para edição
 $stmt = $pdo->prepare("
     SELECT a.nota, a.resenha, a.musica_id, a.usuario_id, m.titulo, m.artista 
     FROM avaliacoes a 
@@ -23,16 +25,17 @@ $stmt = $pdo->prepare("
 $stmt->execute([$avaliacao_id, $_SESSION['usuario_id']]);
 $avaliacao = $stmt->fetch(PDO::FETCH_ASSOC);
 
+// Verifica se a avaliação foi encontrada
 if (!$avaliacao) {
     header("Location: index.php");
     exit;
 }
 
-// Puxa todas as músicas pra dropdown
+// Puxa todas as músicas para exibição no dropdown
 $stmt = $pdo->query("SELECT id, titulo, artista FROM musicas");
 $musicas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Atualiza a avaliação
+// Atualiza a avaliação no banco de dados se o formulário for enviado via método POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $musica_id = $_POST['musica_id'];
     $nota = $_POST['nota'];
@@ -41,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt = $pdo->prepare("UPDATE avaliacoes SET musica_id = ?, nota = ?, resenha = ? WHERE id = ? AND usuario_id = ?");
     $stmt->execute([$musica_id, $nota, $resenha, $avaliacao_id, $_SESSION['usuario_id']]);
 
+    // Redireciona para a página inicial após a atualização bem-sucedida
     header("Location: index.php");
     exit;
 }

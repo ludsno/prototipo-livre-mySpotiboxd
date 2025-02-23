@@ -1,3 +1,13 @@
+/* Variáveis */
+:root {
+    --primary-color: #ff4500;
+    --secondary-color: #1a1a1a;
+    --text-color: #333;
+    --light-bg-color: #f9f9f9;
+    --border-radius: 5px;
+    --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
 /* Reset básico */
 * {
     margin: 0;
@@ -12,7 +22,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: #1a1a1a;
+    background-color: var(--secondary-color);
     color: white;
 }
 
@@ -28,14 +38,14 @@ header {
 
 .search-bar button {
     padding: 5px 10px;
-    background-color: #ff4500;
+    background-color: var(--primary-color);
     border: none;
     color: white;
     cursor: pointer;
 }
 
 .user-options a {
-    color: #ff4500;
+    color: var(--primary-color);
     text-decoration: none;
 }
 
@@ -49,29 +59,29 @@ main {
 .feed h1 {
     font-size: 24px;
     margin-bottom: 20px;
-    color: #333;
+    color: var(--text-color);
 }
 
 .post {
     display: flex;
     align-items: center;
-    background-color: #f9f9f9;
+    background-color: var(--light-bg-color);
     padding: 15px;
     margin-bottom: 15px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
 }
 
 .post img {
     width: 50px;
     height: 50px;
     margin-right: 15px;
-    border-radius: 5px;
+    border-radius: var(--border-radius);
 }
 
 .post-content p {
     font-size: 16px;
-    color: #333;
+    color: var(--text-color);
 }
 
 .post-content .review {
@@ -89,32 +99,33 @@ main {
 footer {
     text-align: center;
     padding: 20px;
-    background-color: #1a1a1a;
+    background-color: var(--secondary-color);
     color: white;
     position: fixed;
     bottom: 0;
     width: 100%;
 }
 
+/* Formulário */
 .form-container {
     max-width: 500px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: var(--light-bg-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
 }
 
 .form-container h1 {
     font-size: 24px;
     margin-bottom: 20px;
-    color: #333;
+    color: var(--text-color);
 }
 
 .form-container label {
     display: block;
     margin: 10px 0 5px;
-    color: #333;
+    color: var(--text-color);
 }
 
 .form-container select,
@@ -129,32 +140,29 @@ footer {
 
 .form-container button {
     padding: 10px 20px;
-    background-color: #ff4500;
+    background-color: var(--primary-color);
     border: none;
     color: white;
     cursor: pointer;
     border-radius: 4px;
 }
 
-.edit-btn {
+/* Botões de ação */
+.edit-btn,
+.delete-btn {
     display: inline-block;
     margin-top: 5px;
     padding: 5px 10px;
-    background-color: #ff4500;
     color: white;
     text-decoration: none;
     border-radius: 4px;
     font-size: 14px;
 }
 
+.edit-btn {
+    background-color: var(--primary-color);
+}
+
 .delete-btn {
-    display: inline-block;
-    margin-top: 5px;
-    margin-left: 10px;
-    padding: 5px 10px;
     background-color: #dc3545;
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-    font-size: 14px;
 }

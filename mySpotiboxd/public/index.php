@@ -27,6 +27,10 @@ $avaliacoes = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>mySpotiboxd - Home</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
+    <meta name="description" content="mySpotiboxd - Sua plataforma para avaliar músicas e álbuns.">
+    <meta name="keywords" content="música, álbuns, avaliações, resenhas, mySpotiboxd, artistas, playlists, críticas, reviews, notas, comentários, música online">
+    <meta name="author" content="HKLRW">
 </head>
 
 <body>
